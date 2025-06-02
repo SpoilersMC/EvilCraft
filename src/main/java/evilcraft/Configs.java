@@ -146,7 +146,6 @@ public class Configs {
         configs.add(new HardenedBloodShardConfig());
         configs.add(new DarkPowerGemConfig());
         configs.add(new BloodInfusionCoreConfig());
-        configs.add(new BloodContainerConfig());//
         configs.add(new PoisonSacConfig());
         configs.add(new BucketPoisonConfig());
         configs.add(new WerewolfFurConfig());
