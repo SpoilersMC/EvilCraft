@@ -2,7 +2,7 @@ package evilcraft.core.config;
 
 /**
  * An enumeration of {@link ConfigurableType} categories.
- * They will be categorised like this in the config file.
+ * They will be categorized like this in the config file.
  * @author rubensworks
  */
 public enum ConfigurableTypeCategory {

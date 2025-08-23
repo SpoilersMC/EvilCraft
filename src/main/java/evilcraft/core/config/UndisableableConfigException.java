@@ -19,6 +19,6 @@ public class UndisableableConfigException extends EvilCraftConfigException {
      */
     @SuppressWarnings("rawtypes")
     public UndisableableConfigException(ExtendedConfig eConfig) {
-        super("The configuration for " + eConfig.getNamedId() + " was disabled in the config file, please enable it back since this mod can't function without it.");
+        super("The configuration for " + eConfig.getNamedId() + " was disabled in the config file, please re-enable it since this mod can't function without it.");
     }
 }

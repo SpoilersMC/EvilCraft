@@ -13,8 +13,7 @@ import evilcraft.core.fluid.BloodFluidConverter.BloodConvertersChanged;
 public class GeneralConfig extends DummyConfig {
 
     /**
-     * The current mod version, will be used to check if the player's config isn't out of date and warn the player
-     * accordingly.
+     * The current mod version, will be used to check if the player's config isn't out of date and warn the player accordingly.
      */
     @ConfigurableProperty(category = ConfigurableTypeCategory.CORE, comment = "Config version for " + Reference.MOD_NAME + ".\nDO NOT EDIT MANUALLY!")
     public static String version = Reference.MOD_VERSION;
@@ -36,6 +35,12 @@ public class GeneralConfig extends DummyConfig {
      */
     @ConfigurableProperty(category = ConfigurableTypeCategory.CORE, comment = "If mod compatibility loader should crash hard if errors occur in that process.", requiresMcRestart = true)
     public static boolean crashOnModCompatCrash = false;
+
+    /**
+     * Should the main menu panorama evilify randomly; brandyn doesnt like fun.
+     */
+    @ConfigurableProperty(category = ConfigurableTypeCategory.GENERAL, comment = "Should the main menu evilify randomly.")
+    public static boolean evilifyTheMainMenu = true;
 
     /**
      * If players are able to die without any reason.

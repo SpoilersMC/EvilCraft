@@ -39,8 +39,7 @@ import java.util.Set;
     useMetadata = true,
     version = Reference.MOD_VERSION,
     dependencies = Reference.MOD_DEPENDENCIES,
-    guiFactory = "evilcraft.core.client.gui.config.ExtendedConfigGuiFactory"
-    )
+    guiFactory = "evilcraft.core.client.gui.config.ExtendedConfigGuiFactory")
 public class EvilCraft {
 
     /**
@@ -139,8 +138,8 @@ public class EvilCraft {
         // Gui Handlers
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
-        // Add custom panorama's
-        if(event.getSide() == Side.CLIENT) {
+        // Add custom panoramas
+        if(event.getSide() == Side.CLIENT && GeneralConfig.evilifyTheMainMenu) {
             GuiMainMenuEvilifier.evilifyMainMenu();
         }
 

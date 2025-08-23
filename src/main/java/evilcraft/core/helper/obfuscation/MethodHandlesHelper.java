@@ -7,26 +7,20 @@ import java.lang.reflect.Method;
 
 import org.apache.logging.log4j.Level;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.ReflectionHelper.UnableToFindFieldException;
 import cpw.mods.fml.relauncher.ReflectionHelper.UnableToFindMethodException;
 import evilcraft.EvilCraft;
-import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class MethodHandlesHelper {
     // are we in a dev environment
     private static final boolean DEV_ENVIRONMENT = (boolean)Launch.blackboard.get("fml.deobfuscatedEnvironment");
 
-    // net.minecraft.client.gui.GuiMainMenu.
-    public static final String GUIMAINMENU_TITLEPANORAMAPATHS = DEV_ENVIRONMENT ? "titlePanoramaPaths" : "field_73978_o";
     // net.minecraft.potion.Potion.
     private static final String POTION_POTIONTYPES = DEV_ENVIRONMENT ? "potionTypes" : "field_76425_a";
     // net.minecraftforge.oredict.ShapedOreRecipe.
@@ -39,7 +33,6 @@ public class MethodHandlesHelper {
     // net.minecraft.entity.EntityLiving.
     private static final String ENTITYLIVING_GETLIVINGSOUND = DEV_ENVIRONMENT ? "getLivingSound" : "func_70639_aQ";
 
-    public static Field panoramaPaths = FMLCommonHandler.instance().getSide() == Side.CLIENT ? findFieldFaster(GuiMainMenu.class, GUIMAINMENU_TITLEPANORAMAPATHS) : null;
     public static Field potionTypes = findFieldFaster(Potion.class, POTION_POTIONTYPES);
     public static Field recipeWidth = findFieldFaster(ShapedOreRecipe.class, SHAPEDORERECIPE_WIDTH);
     public static Field recipeHeight = findFieldFaster(ShapedOreRecipe.class, SHAPEDORERECIPE_HEIGHT);
@@ -48,7 +41,6 @@ public class MethodHandlesHelper {
     public static Method getDeathSound = findMethodFaster(EntityLivingBase.class, ENTITYLIVINGBASE_GETDEATHSOUND);
     public static Method getLivingSound = findMethodFaster(EntityLiving.class, ENTITYLIVING_GETLIVINGSOUND);
 
-    private static final MethodHandle MH_GuiMainMenu_titlePanoramaPaths;
     private static final MethodHandle MH_Potion_potionTypes;
     private static final MethodHandle MH_ShapedOreRecipe_width;
     private static final MethodHandle MH_ShapedOreRecipe_height;
@@ -58,7 +50,6 @@ public class MethodHandlesHelper {
     private static final MethodHandle MH_getLivingSound;
     static {
         try {
-            MH_GuiMainMenu_titlePanoramaPaths = panoramaPaths != null ? MethodHandles.lookup().unreflectSetter(panoramaPaths) : null;
             MH_Potion_potionTypes = MethodHandles.lookup().unreflectSetter(potionTypes);
             MH_ShapedOreRecipe_width = MethodHandles.lookup().unreflectGetter(recipeWidth);
             MH_ShapedOreRecipe_height = MethodHandles.lookup().unreflectGetter(recipeHeight);
@@ -67,16 +58,6 @@ public class MethodHandlesHelper {
             MH_getLivingSound = MethodHandles.lookup().unreflect(getLivingSound);
         } catch(Exception e) {
             throw new IllegalStateException(e);
-        }
-    }
-
-    public static void setTitlePanoramaPaths(ResourceLocation[] titlePanoramaPaths) {
-        try {
-            MH_GuiMainMenu_titlePanoramaPaths.invoke(titlePanoramaPaths);
-            EvilCraft.log("Successfully Evilified the Main Menu", Level.INFO);
-        } catch(Throwable e) {
-            EvilCraft.log("MethodHandle setTitlePanoramaPaths errored on setting the panorama paths: ", Level.ERROR);
-            e.printStackTrace();
         }
     }
 

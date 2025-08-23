@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 /**
  * A holder class for properties that go inside the config file.
  * Used inside the {@link ConfigHandler} for configuring the settings of the {@link IConfigurable}.
- * Do no confuse with {@link ConfigurableProperty} which is an annotation an is internally used to make new instances of {@link ConfigProperty}.
+ * Do no confuse with {@link ConfigurableProperty} which is an annotation and is internally used to make new instances of {@link ConfigProperty}.
  * @author rubensworks
  */
 public final class ConfigProperty {
@@ -142,7 +142,7 @@ public final class ConfigProperty {
     }
 
     /**
-     * Set the calback.
+     * Set the callback.
      * @param callback The callback to be set.
      */
     public void setCallback(ConfigPropertyCallback callback) {
