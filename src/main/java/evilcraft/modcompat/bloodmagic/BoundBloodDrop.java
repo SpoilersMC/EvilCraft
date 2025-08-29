@@ -138,7 +138,7 @@ public class BoundBloodDrop extends ConfigurableDamageIndicatedItemFluidContaine
         FluidStack essenceFluid = BloodFluidConverter.getInstance().convertReverse(AlchemicalWizardry.lifeEssenceFluid, resource);
         int filled = essenceFluid == null ? 0 : essenceFluid.amount;
         if(doFill && !MinecraftHelpers.isClientSide()) {
-            SoulNetworkHandler.setCurrentEssence(owner, essence + filled);
+            SoulNetworkHandler.setCurrentEssence(owner, (int)Math.min(Integer.MAX_VALUE, (long)essence + filled));
         }
         return filled;
     }
